@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 public class ConfigSchedule {
     
     
-    @Scheduled(cron = "*/3 * * * * *", initialDelay = 50000)
+    @Scheduled(cron = "0 0/5 * * * *")
     public void sendMessage() {
         System.out.println(LocalDateTime.now()+ ": Schedule");
     }
