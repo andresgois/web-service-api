@@ -4,7 +4,6 @@ import static br.andresgois.github.io.webserviceapi.util.Contants.*;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -16,10 +15,8 @@ public final class Shared {
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(obj);
-            System.out.println(jsonObject.getJSONArray("value").getJSONObject(0));
         } catch (JSONException e) {
-            log.error(ERRO_CONVERSAO);
-            e.printStackTrace();
+            log.error(ERRO_CONVERSAO,e.getMessage());
         }
         return jsonObject.getJSONArray("value");
     }
