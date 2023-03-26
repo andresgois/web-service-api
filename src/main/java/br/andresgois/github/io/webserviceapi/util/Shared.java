@@ -1,6 +1,7 @@
 package br.andresgois.github.io.webserviceapi.util;
 
 import static br.andresgois.github.io.webserviceapi.util.Contants.*;
+import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 
@@ -11,7 +12,7 @@ public final class Shared {
    
     private Shared() {}
     
-    public static JSONObject stringToObject(String obj) {
+    public static JSONArray stringToObject(String obj) throws JSONException {
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(obj);
@@ -20,6 +21,6 @@ public final class Shared {
             log.error(ERRO_CONVERSAO);
             e.printStackTrace();
         }
-        return jsonObject;
+        return jsonObject.getJSONArray("value");
     }
 }
