@@ -12,19 +12,27 @@ import br.andresgois.github.io.webserviceapi.service.UpdateService;
 @SpringBootApplication
 public class WebServiceApiApplication {
     
-    @Autowired 
-    private RestService service;
-    
     @Autowired
     private UpdateService updateService;
-    
+
     @Bean
-    public CommandLineRunner init(RestService service) {
-        
+    CommandLineRunner init(RestService service) {
+
         return args -> {
+            System.out.println("#########################################################################################################################");
+            System.out.println("#########################################################################################################################");
+            System.out.println("#####################         ####            ###          ######     ##############      ###########          ##########");
+            System.out.println("####################           ####            ###            ####     #############       ########             #########");
+            System.out.println("###################     #####   ###    ###########     ##      ###     ############         ######        ###   #########");
+            System.out.println("###################         #######           ####     ####     ##     ###########     #     ####     ###################");
+            System.out.println("####################           ####           ####             ###     ##########     ###     ##      #####     #########");
+            System.out.println("######################          ###           ####            ####     #########     #####    ##      #####     #########");
+            System.out.println("###################   #####     ###    ###########          ######     ########                ##      ####     #########");
+            System.out.println("###################             ###            ###     ###########           #                 ###              #########");
+            System.out.println("####################           ####            ###     ###########           #      ########     ###           ##########");
+            System.out.println("#########################################################################################################################");
+            System.out.println("#########################################################################################################################");
             updateService.inserirDadosExternos();
-            /*String s = service.getService();
-            System.out.println(s);*/
         };
     }
 
