@@ -18,7 +18,7 @@ public class ConfigSchedule {
     @Autowired
     private UpdateService updateService;
     
-    @Scheduled(cron = "0 0/5 * * * *")
+    @Scheduled(cron = "0 */5 * ? * *")   //"0 0/5 * * * *")
     public void sendMessage() {
         System.out.println(LocalDateTime.now()+ ": Schedule");
         try {
