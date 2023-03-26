@@ -1,11 +1,13 @@
 package br.andresgois.github.io.webserviceapi.controller;
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import br.andresgois.github.io.webserviceapi.model.Updates;
 import br.andresgois.github.io.webserviceapi.service.UpdateService;
@@ -24,8 +26,13 @@ public class UpdateController {
     
     @GetMapping
     @ApiOperation("Endpoint para lista todos os updates ")
-    public ResponseEntity<List<Updates>> findAll() {
-        List<Updates> list = service.listaTodos();
-        return ResponseEntity.ok().body(list);
+    public Page<Updates> findAll(
+            @RequestParam(required = false) String alias,
+            @PageableDefault(size = 10, sort = {"identificador"}) Pageable paginacao) {
+        if(alias == null) {            
+            return service.listaTodos(paginacao);
+        }else {
+            return service.listaTodos(alias, paginacao);
+        }
     }
 }

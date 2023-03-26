@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import br.andresgois.github.io.webserviceapi.model.Updates;
@@ -47,8 +49,12 @@ public class UpdateService {
         
     }
     
-    public List<Updates> listaTodos() {
-        return repository.findAll();
+    public Page<Updates> listaTodos(Pageable paginacao) {
+        return repository.findAll(paginacao);
+    }
+    
+    public Page<Updates> listaTodos(String alias, Pageable paginacao) {
+        return repository.findByAlias(alias, paginacao);
     }
     
 }
